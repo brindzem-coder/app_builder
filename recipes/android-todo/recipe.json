@@ -1,0 +1,25 @@
+{
+  "id": "android-todo",
+  "description": "Expo Android To-Do app (local storage)",
+  "vars": {},
+  "steps": [
+    {
+      "type": "exec",
+      "cwd": "{{WORKDIR}}",
+      "cmd": "npx create-expo-app mobile --template blank-typescript"
+    },
+    {
+      "type": "exec",
+      "cwd": "{{WORKDIR}}/mobile",
+      "cmd": "npm i @react-native-async-storage/async-storage"
+    },
+    {
+      "type": "write_file",
+      "path": "{{WORKDIR}}/mobile/App.tsx",
+      "from_template": "files/mobile_App.tsx"
+    }
+  ],
+  "run": [
+    { "name": "mobile", "cwd": "{{WORKDIR}}/mobile", "cmd": "npx expo start" }
+  ]
+}

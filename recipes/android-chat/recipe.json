@@ -1,0 +1,59 @@
+{
+  "id": "android-chat",
+  "description": "Expo Android chat app + Node OpenAI proxy server",
+  "vars": {
+    "SERVER_PORT": "8787",
+    "API_URL_ANDROID_EMULATOR": "http://10.0.2.2:8787"
+  },
+  "steps": [
+    {
+      "type": "exec",
+      "cwd": "{{WORKDIR}}",
+      "cmd": "npx create-expo-app mobile --template blank-typescript"
+    },
+    {
+      "type": "write_file",
+      "path": "{{WORKDIR}}/mobile/.env",
+      "from_template": "files/mobile_env.example"
+    },
+    {
+      "type": "exec",
+      "cwd": "{{WORKDIR}}/mobile",
+      "cmd": "npm i @react-native-async-storage/async-storage"
+    },
+    {
+      "type": "write_file",
+      "path": "{{WORKDIR}}/mobile/App.tsx",
+      "from_template": "files/mobile_App.tsx"
+    },
+
+    {
+      "type": "mkdir",
+      "path": "{{WORKDIR}}/server"
+    },
+    {
+      "type": "write_file",
+      "path": "{{WORKDIR}}/server/package.json",
+      "from_template": "files/server_package.json"
+    },
+    {
+      "type": "write_file",
+      "path": "{{WORKDIR}}/server/index.js",
+      "from_template": "files/server_index.js"
+    },
+    {
+      "type": "write_file",
+      "path": "{{WORKDIR}}/server/.env",
+      "from_template": "files/server_env.example"
+    },
+    {
+      "type": "exec",
+      "cwd": "{{WORKDIR}}/server",
+      "cmd": "npm i"
+    }
+  ],
+  "run": [
+    { "name": "server", "cwd": "{{WORKDIR}}/server", "cmd": "npm run dev" },
+    { "name": "mobile", "cwd": "{{WORKDIR}}/mobile", "cmd": "npx expo start" }
+  ]
+}

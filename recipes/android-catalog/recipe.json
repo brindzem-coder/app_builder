@@ -1,0 +1,20 @@
+{
+  "id": "android-catalog",
+  "description": "Expo Android Catalog app (list and details)",
+  "vars": {},
+  "steps": [
+    {
+      "type": "exec",
+      "cwd": "{{WORKDIR}}",
+      "cmd": "npx create-expo-app mobile --template blank-typescript"
+    },
+    {
+      "type": "write_file",
+      "path": "{{WORKDIR}}/mobile/App.tsx",
+      "from_template": "files/mobile_App.tsx"
+    }
+  ],
+  "run": [
+    { "name": "mobile", "cwd": "{{WORKDIR}}/mobile", "cmd": "npx expo start" }
+  ]
+}
