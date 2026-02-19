@@ -12,7 +12,7 @@ def recipes():
         typer.echo(r)
 
 @app.command()
-def new(recipe: str, project_name: str, out: str = "."):
+def new(recipe: str, project_name: str, out: str = "generated"):
     """Create a new project from a recipe."""
     workdir = Path(out).resolve() / project_name
     workdir.mkdir(parents=True, exist_ok=True)
@@ -20,7 +20,7 @@ def new(recipe: str, project_name: str, out: str = "."):
     typer.echo(f"✅ Created: {workdir}")
 
 @app.command()
-def run(project_name: str, out: str = "."):
+def run(project_name: str, out: str = "generated"):
     """Run server + mobile for the project (from its recipe run section)."""
     workdir = (Path(out).resolve() / project_name)
     run_project(workdir)
