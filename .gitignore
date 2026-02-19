@@ -19,4 +19,7 @@ dist/
 build/
 
 generated/
+**/node_modules/
+**/.expo/
+**/*.pyc
 **/__pycache__/
