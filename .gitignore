@@ -1,0 +1,21 @@
+﻿# Secrets / env
+.env
+*.env
+.env.*
+**/.env
+**/.env.*
+**/*.env
+**/*.env.*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node / Expo
+node_modules/
+.expo/
+dist/
+build/
+
+generated/
